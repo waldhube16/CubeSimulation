@@ -149,6 +149,8 @@
   <ItemGroup>
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeFace.h" />
+    <ClInclude Include="CubeSlice.h" />
+    <ClInclude Include="CubeTriplet.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -156,6 +158,8 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeFace.cpp" />
     <ClCompile Include="CubeSimulation.cpp" />
+    <ClCompile Include="CubeSlice.cpp" />
+    <ClCompile Include="CubeTriplet.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

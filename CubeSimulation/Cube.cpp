@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Cube.h"
+/*
 
 Cube::Cube(CubeFace &UP, CubeFace &FRONT, CubeFace &LEFT, CubeFace &BACK, CubeFace &RIGHT, CubeFace &DOWN)
 {
@@ -17,177 +18,97 @@ Cube::Cube(CubeFace &UP, CubeFace &FRONT, CubeFace &LEFT, CubeFace &BACK, CubeFa
 
 
 }
-
-void Cube::import_all_faces(CubeFace &UP, CubeFace &LEFT, CubeFace &FRONT, CubeFace &RIGHT, CubeFace &BACK, CubeFace &DOWN)
+*/
+Cube::Cube(int UP, int FRONT, int LEFT, int BACK, int RIGHT, int DOWN)
 {
-	import_u_face(UP);
-	import_l_face(LEFT);
-	import_f_face(FRONT);
-	import_r_face(RIGHT);
-	import_b_face(BACK);
-	import_d_face(DOWN);
-}
+	/*
+	North_ = CubeSlice(UP, FRONT, RIGHT, BACK, LEFT);
+	Ordinate_ = CubeSlice(-1, FRONT, RIGHT, BACK, LEFT);
+	South_ = CubeSlice(DOWN, FRONT, RIGHT, BACK, LEFT);
+	West_ = CubeSlice(LEFT, FRONT, DOWN, BACK, UP);
+	Abscissa_ = CubeSlice(-1, FRONT, DOWN, BACK, UP);
+	East_ = CubeSlice(RIGHT, FRONT, DOWN, BACK, UP);
+	Near_ = CubeSlice(FRONT, DOWN, RIGHT, UP, LEFT);
+	Applicate_ = CubeSlice(-1, DOWN, RIGHT, UP, LEFT);
+	Far_ = CubeSlice(BACK, DOWN, RIGHT, UP, LEFT);
+	*/
 
-void Cube::import_d_face(CubeFace & DOWN)
-{
-	//set Down Face
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			face_Map_[i + 6][j + 3] = DOWN.get_Faceval(i, j);
-		}
-	}
-}
+	WHITE_ = CubeFace::CubeFace(UP);
+	GREEN_ = CubeFace::CubeFace(FRONT);
+	RED_ = CubeFace::CubeFace(RIGHT);
+	BLUE_ = CubeFace::CubeFace(BACK);
+	ORANGE_ = CubeFace::CubeFace(LEFT);
+	YELLOW_ = CubeFace::CubeFace(DOWN);
 
-void Cube::import_b_face(CubeFace & BACK)
-{
-	//set Back Face
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			face_Map_[i + 3][j + 9] = BACK.get_Faceval(i, j);
-		}
-	}
-}
+	ptr_UP_ = &WHITE_;
+	ptr_FRONT_ = &GREEN_;
+	ptr_RIGHT_ = &RED_;
+	ptr_BACK_ = &BLUE_;
+	ptr_LEFT_ = &ORANGE_;
+	ptr_DOWN_ = &YELLOW_;
 
-void Cube::import_r_face(CubeFace & RIGHT)
-{
-	//set Right Face
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			face_Map_[i + 3][j + 6] = RIGHT.get_Faceval(i, j);
-		}
-	}
-}
-
-void Cube::import_f_face(CubeFace & FRONT)
-{
-	//set Front Face
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			face_Map_[i + 3][j + 3] = FRONT.get_Faceval(i, j);
-		}
-	}
-}
-
-void Cube::import_l_face(CubeFace & LEFT)
-{
-	//set Left Face
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			face_Map_[i + 3][j] = LEFT.get_Faceval(i, j);
-		}
-	}
-}
-
-void Cube::import_u_face(CubeFace & UP)
-{
-	//set Upper Face
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			face_Map_[i][j + 3] = UP.get_Faceval(i, j);
-		}
-	}
-}
-
-void Cube::refresh_all_faces(CubeFace &UP, CubeFace &LEFT, CubeFace &FRONT, CubeFace &RIGHT, CubeFace &BACK, CubeFace &DOWN)
-{
-	refresh_u_face(UP);
-	refresh_l_face(LEFT);
-	refresh_f_face(FRONT);
-	refresh_r_face(RIGHT);
-	refresh_b_face(BACK);
-	refresh_d_face(DOWN);
-}
-
-void Cube::refresh_u_face(CubeFace & UP)
-{
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			UP.set_Faceval(i, j, face_Map_[i][j + 3]);
-		}
-
-	}
-	
-
-}
-
-void Cube::refresh_d_face(CubeFace & DOWN)
-{
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			DOWN.set_Faceval(i, j, face_Map_[i+6][j + 3]);
-		}
-
-	}
+	import_all_faces_to_facemap(ptr_UP_, ptr_LEFT_, ptr_FRONT_, ptr_RIGHT_, ptr_BACK_, ptr_DOWN_);
 
 	
 }
 
-void Cube::refresh_f_face(CubeFace & FRONT)
+void Cube::import_all_faces_to_facemap(CubeFace * ptr_UP_, CubeFace * ptr_LEFT_, CubeFace * ptr_FRONT_, CubeFace * ptr_RIGHT_, CubeFace * ptr_BACK_, CubeFace * ptr_DOWN_)
 {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 9; i++) //initialize the whole array
 	{
-		for (int j = 0; j < 3; j++)
+		for (int j = 0; j < 12; j++)
 		{
-			FRONT.set_Faceval(i, j, face_Map_[i + 3][j + 3]);
+			face_Map_[i][j] = 0x20;
+			temp_arr_[i] = 0x20;
 		}
-
 	}
 
-
-}
-
-void Cube::refresh_l_face(CubeFace & LEFT)
-{
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++) //initialize up face
 	{
-		for (int j = 0; j < 3; j++)
+		for (int j = 3; j < 6; j++)
 		{
-			LEFT.set_Faceval(i, j, face_Map_[i + 3][j]);
+			face_Map_[i][j] = ptr_UP_->face_[i][j-3];
 		}
-
 	}
 
-
-}
-
-void Cube::refresh_r_face(CubeFace & RIGHT)
-{
-	for (int i = 0; i < 3; i++)
+	for (int i = 3; i < 6; i++) //initialize left face
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			RIGHT.set_Faceval(i, j, face_Map_[i + 3][j + 6]);
+			face_Map_[i][j] = ptr_LEFT_->face_[i-3][j];
 		}
-
 	}
 
-}
-
-void Cube::refresh_b_face(CubeFace & BACK)
-{
-	for (int i = 0; i < 3; i++)
+	for (int i = 3; i < 6; i++)  //initialize front face
 	{
-		for (int j = 0; j < 3; j++)
+		for (int j = 3; j < 6; j++)
 		{
-			BACK.set_Faceval(i, j, face_Map_[i + 3][j + 6]);
+			face_Map_[i][j] = ptr_FRONT_->face_[i-3][j-3];
 		}
+	}
 
+	for (int i = 3; i < 6; i++)  //initialize right face
+	{
+		for (int j = 6; j < 9; j++)
+		{
+			face_Map_[i][j] = ptr_RIGHT_->face_[i-3][j-6];
+		}
+	}
+
+	for (int i = 3; i < 6; i++)  //initialize back face
+	{
+		for (int j = 9; j < 12; j++)
+		{
+			face_Map_[i][j] = ptr_BACK_->face_[i-3][j-9];
+		}
+	}
+
+	for (int i = 6; i < 9; i++)  //initialize down face
+	{
+		for (int j = 3; j < 6; j++)
+		{
+			face_Map_[i][j] = ptr_DOWN_->face_[i-6][j-3];
+		}
 	}
 }
 
@@ -200,203 +121,269 @@ void Cube::print_cube()
 	}
  }
 
-void Cube::U(CubeFace &UP, CubeFace &LEFT, CubeFace &FRONT, CubeFace &RIGHT, CubeFace &BACK, CubeFace &DOWN)
+void Cube::R()
 {
-	fill_temp_x_arr(3);
-	//rotate tiles on vertical faces - direction : --->
-	for (int i = 0; i < 9; i++)
-	{
-		face_Map_[3][i]  = temp_arr_[i+3];
-	}
-	for (int i = 9; i < 12; i++)
-	{
-		face_Map_[3][i] = temp_arr_[i-9];
-	}
-	//update Class face for rotation
-	import_u_face(UP);
-	UP.rotate_Face(); //rotate face
-	refresh_all_faces(UP, LEFT, FRONT, RIGHT, BACK, DOWN);
-
-	
+	rotate_z_prime();
+	U();
+	rotate_z();
+		
 }
 
-void Cube::U_prime(CubeFace & UP)
+void Cube::R_prime()
 {
-	fill_temp_x_arr(3);
+	rotate_z_prime();
+	U_prime();
+	rotate_z();
+}
+
+void Cube::F()
+{
+	rotate_x();
+	U();
+	rotate_x_prime();
+}
+
+void Cube::F_prime()
+{
+	rotate_x();
+	U_prime();
+	rotate_x_prime();
+}
+
+void Cube::L()
+{
+	rotate_z();
+	U();
+	rotate_z_prime();
+}
+
+void Cube::L_prime()
+{
+	rotate_z();
+	U_prime();
+	rotate_z_prime();
+}
+
+void Cube::B()
+{
+	rotate_x_prime();
+	U();
+	rotate_x();
+}
+
+void Cube::B_prime()
+{
+	rotate_x_prime();
+	U_prime();
+	rotate_x();
+}
+
+void Cube::D()
+{
+	rotate_x_prime();
+	rotate_x_prime();
+	U();
+	rotate_x();
+	rotate_x();
+}
+
+void Cube::D_prime()
+{
+	rotate_x_prime();
+	rotate_x_prime();
+	U_prime();
+	rotate_x();
+	rotate_x();
+}
+
+
+
+void Cube::U()
+{
+	int temp_arr_left[3];
+	int temp_arr_front[3];
+	int temp_arr_right[3];
+	int temp_arr_back[3];
+
 	//rotate tiles on vertical faces - direction : <---
-	for (int i = 11; i > 2; i--)
+	for (int i = 0; i < 3; i++)
 	{
-		face_Map_[3][i] = temp_arr_[i - 3];
-	}
-	for (int i = 2; i > -1; i--)
-	{
-		face_Map_[3][i] = temp_arr_[i + 9];
+		temp_arr_left[i] = ptr_LEFT_->face_[0][i];
+		temp_arr_front[i] = ptr_FRONT_->face_[0][i];
+		temp_arr_right[i] = ptr_RIGHT_->face_[0][i];
+		temp_arr_back[i] = ptr_BACK_->face_[0][i];
 	}
 
-	//rotate tiles on horizontal faces
-	import_u_face(UP);
-	UP.prime_Face();
-	import_u_face(UP);
+	for (int i = 0; i < 3; i++)
+	{
+		ptr_LEFT_->face_[0][i] = temp_arr_front[i];
+		ptr_FRONT_->face_[0][i] = temp_arr_right[i];
+		ptr_RIGHT_->face_[0][i] = temp_arr_back[i];
+		ptr_BACK_->face_[0][i] = temp_arr_left[i];
+	}
 	
+	ptr_UP_->rotate_Face(); 
 
-	
 }
 
-void Cube::R(CubeFace &UP, CubeFace &LEFT, CubeFace &FRONT, CubeFace &RIGHT, CubeFace &BACK, CubeFace &DOWN)
+void Cube::U_prime()
 {
-	fill_temp_y_arr(5);
-
-	//rotate tiles on vertical faces - direction : <---
-	for (int i = 0; i < 9; i++)
-	{
-		face_Map_[i][5] = temp_arr_[i + 3]; //tay [3:11]
-	}
-	for (int i = 9; i < 12; i++)
-	{
-		face_Map_[i-6][5 + 6] = temp_arr_[i - 9]; //tay [0:2]
-	}
-
-
-
-	//rotate tiles on horizontal faces
-	import_r_face(RIGHT);
-	RIGHT.rotate_Face();
-	refresh_all_faces(UP, LEFT, FRONT, RIGHT, BACK, DOWN);
-
-
-	
-}
-
-void Cube::R_prime(CubeFace & RIGHT)
-{
-	fill_temp_y_arr(5);
+	int temp_arr_left[3];
+	int temp_arr_front[3];
+	int temp_arr_right[3];
+	int temp_arr_back[3];
 
 	//rotate tiles on vertical faces - direction : --->
-	for (int i = 0; i < 3 ; i++)
-	{
-		face_Map_[i][5] = temp_arr_[i + 9]; //tay [9:11]
-	}
-	for (int i = 3; i < 9; i++)
-	{
-		face_Map_[i][5] = temp_arr_[i - 3]; //tay [0:5]
-	}
-	for (int i = 6; i < 9; i++)
-	{
-		face_Map_[i-3][5+6] = temp_arr_[i]; //tay [6:8]
-	}
-	
-	//rotate tiles on horizontal faces
-	import_r_face(RIGHT);
-	RIGHT.prime_Face();
-	import_r_face(RIGHT);
-
-}
-
-void Cube::F(CubeFace & FRONT)
-{
-	fill_temp_z_arr(2);
-
-	//rotate tiles on adjacent faces - direction : --->
 	for (int i = 0; i < 3; i++)
 	{
-		face_Map_[2][5 - i] = temp_arr_[i]; //use  taz [0:2]
+		temp_arr_left[i] = ptr_LEFT_->face_[0][i];
+		temp_arr_front[i] = ptr_FRONT_->face_[0][i];
+		temp_arr_right[i] = ptr_RIGHT_->face_[0][i];
+		temp_arr_back[i] = ptr_BACK_->face_[0][i];
 	}
-	for (int i = 3; i < 6; i++)
-	{
-		face_Map_[i][2] = temp_arr_[i];//use taz [3:5]
-	}
-	for (int i = 6; i < 9; i++)
-	{
-		face_Map_[6][i-3] = temp_arr_[i]; //use taz [6:8]
-	}
-	for (int i = 9; i < 12; i++)
-	{
-		face_Map_[14 - i][6] = temp_arr_[i]; //use taz [9:11]
-	}
-
-	//rotate tiles on horizontal faces
-	refresh_f_face(FRONT);
-	FRONT.rotate_Face();
-	refresh_f_face(FRONT);
-
-
-}
-
-void Cube::F_prime(CubeFace & FRONT)
-{
-	fill_temp_z_arr(2);
-
-	//rotate tiles on adjacent faces - direction : --->
-	for (int i = 0; i < 3; i++)
-	{
-		face_Map_[6][i + 3] = temp_arr_[i]; //use  taz [0:2]
-	}
-	for (int i = 3; i < 6; i++)
-	{
-		face_Map_[8 - i][6] = temp_arr_[i];//use taz [3:5]
-	}
-	for (int i = 6; i < 9; i++)
-	{
-		face_Map_[2][11 - i ] = temp_arr_[i]; //use taz [6:8]
-	}
-	for (int i = 9; i < 12; i++)
-	{
-		face_Map_[i-6][2] = temp_arr_[i]; //use taz [9:11]
-	}
-
-	//rotate tiles on horizontal faces
-	refresh_f_face(FRONT);
-	FRONT.prime_Face();
-	refresh_f_face(FRONT);
-}
-
-
-
-void Cube::fill_temp_x_arr(int x)
-{
-	for (int i = 0; i < 12; i++)
-	{
-		temp_arr_[i] = face_Map_[x][i]; //fill tax [0:11]
-	}
-	
-}
-
-
-void Cube::fill_temp_y_arr(int y)
-{
-	for (int i = 0; i < 9; i++)
-	{
-		temp_arr_[i] = face_Map_[i][y];//fill tay [0:8]
-	}
-	for (int i = 9; i < 12; i++)
-	{
-		temp_arr_[i] = face_Map_[14-i][y+3];//fill tay [9:11]
-	}
-	
-
-}
-
-
-void Cube::fill_temp_z_arr(int z)
-{
 
 	for (int i = 0; i < 3; i++)
 	{
-		temp_arr_[i] = face_Map_[i+3][z];//fill taz [0:2]
+		ptr_LEFT_->face_[0][i] = temp_arr_back[i];
+		ptr_FRONT_->face_[0][i] = temp_arr_left[i];
+		ptr_RIGHT_->face_[0][i] = temp_arr_front[i];
+		ptr_BACK_->face_[0][i] = temp_arr_right[i];
 	}
-	for (int i = 3; i < 6; i++)
-	{
-		temp_arr_[i] = face_Map_[8-z][i];//fill taz [3:5]
-	}
-	for (int i = 6; i < 9; i++)
-	{
-		temp_arr_[i] = face_Map_[11 - i][8-z]; //fill taz [6:8]
-	}
-	for (int i = 9; i < 12; i++)
-	{
-		temp_arr_[i] = face_Map_[z][14-i]; //fill taz [9:11]
-	}
+
+	ptr_UP_->prime_Face();
+
+
+
 }
+
+
+void Cube::rotate_y()
+{
+	CubeFace* temp_ptr_left = ptr_LEFT_;
+	CubeFace* temp_ptr_front = ptr_FRONT_;
+	CubeFace* temp_ptr_right = ptr_RIGHT_;
+	CubeFace* temp_ptr_back = ptr_BACK_;
+
+
+	ptr_UP_->rotate_Face();
+	ptr_DOWN_->prime_Face();
+
+	ptr_LEFT_ = temp_ptr_front;
+	ptr_FRONT_ = temp_ptr_right;
+	ptr_RIGHT_ = temp_ptr_back;
+	ptr_BACK_ = temp_ptr_left;
+}
+
+void Cube::rotate_y_prime()
+{
+	CubeFace* temp_ptr_left = ptr_LEFT_;
+	CubeFace* temp_ptr_front = ptr_FRONT_;
+	CubeFace* temp_ptr_right = ptr_RIGHT_;
+	CubeFace* temp_ptr_back = ptr_BACK_;
+
+
+	ptr_UP_->prime_Face();
+	ptr_DOWN_->rotate_Face();
+
+	ptr_LEFT_ = temp_ptr_back;
+	ptr_FRONT_ = temp_ptr_left;
+	ptr_RIGHT_ = temp_ptr_front;
+	ptr_BACK_ = temp_ptr_right;
+}
+
+void Cube::rotate_x()
+{
+	CubeFace* temp_ptr_up = ptr_UP_;
+	CubeFace* temp_ptr_front = ptr_FRONT_;
+	CubeFace* temp_ptr_back = ptr_BACK_;
+	CubeFace* temp_ptr_down = ptr_DOWN_;
+
+	ptr_RIGHT_->rotate_Face();
+	ptr_LEFT_->prime_Face();
+	ptr_UP_->rotate_Face();
+	ptr_UP_->rotate_Face();
+	ptr_BACK_->rotate_Face();
+	ptr_BACK_->rotate_Face();
+	
+	ptr_BACK_ = temp_ptr_up;
+	ptr_UP_ = temp_ptr_front;
+	ptr_FRONT_ = temp_ptr_down;
+	ptr_DOWN_ = temp_ptr_back;
+
+
+}
+
+void Cube::rotate_x_prime()
+{
+	CubeFace* temp_ptr_up = ptr_UP_;
+	CubeFace* temp_ptr_front = ptr_FRONT_;
+	CubeFace* temp_ptr_back = ptr_BACK_;
+	CubeFace* temp_ptr_down = ptr_DOWN_;
+
+	ptr_RIGHT_->prime_Face();
+	ptr_LEFT_->rotate_Face();
+	ptr_UP_->prime_Face();
+	ptr_UP_->prime_Face();
+	ptr_BACK_->prime_Face();
+	ptr_BACK_->prime_Face();
+
+	ptr_BACK_ = temp_ptr_down;
+	ptr_UP_ = temp_ptr_back;
+	ptr_FRONT_ = temp_ptr_up;
+	ptr_DOWN_ = temp_ptr_front;
+
+
+}
+
+void Cube::rotate_z()
+{
+	CubeFace* temp_ptr_up = ptr_UP_;
+	CubeFace* temp_ptr_right = ptr_RIGHT_;
+	CubeFace* temp_ptr_down = ptr_DOWN_;
+	CubeFace* temp_ptr_left = ptr_LEFT_;
+
+	ptr_UP_->rotate_Face();
+	ptr_FRONT_->rotate_Face();
+	ptr_RIGHT_->rotate_Face();
+	ptr_DOWN_->rotate_Face();
+	ptr_LEFT_->rotate_Face();
+	ptr_BACK_->prime_Face();
+
+
+
+	ptr_RIGHT_ = temp_ptr_up;
+	ptr_DOWN_ = temp_ptr_right;
+	ptr_LEFT_ = temp_ptr_down;
+	ptr_UP_ = temp_ptr_left;
+	
+
+}
+
+void Cube::rotate_z_prime()
+{
+	CubeFace* temp_ptr_up = ptr_UP_;
+	CubeFace* temp_ptr_right = ptr_RIGHT_;
+	CubeFace* temp_ptr_down = ptr_DOWN_;
+	CubeFace* temp_ptr_left = ptr_LEFT_;
+
+	ptr_UP_->prime_Face();
+	ptr_FRONT_->prime_Face();
+	ptr_RIGHT_->prime_Face();
+	ptr_DOWN_->prime_Face();
+	ptr_LEFT_->prime_Face();
+	ptr_BACK_->rotate_Face();
+
+
+
+	ptr_RIGHT_ = temp_ptr_down;
+	ptr_DOWN_ = temp_ptr_left;
+	ptr_LEFT_ = temp_ptr_up;
+	ptr_UP_ = temp_ptr_right;
+
+
+}
+
+
 
 Cube::~Cube()
 {

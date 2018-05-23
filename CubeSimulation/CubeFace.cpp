@@ -29,6 +29,18 @@ CubeFace::CubeFace(int COLOR)
 
 }
 
+CubeFace::CubeFace()
+{
+	for (int j = 0; j < 3; j++)
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			face_[j][i] = -1;
+			faceCache_[j][i] = -1;
+		}
+	}
+}
+
 void CubeFace::rotate_Face()
 {
 	//cache current state
