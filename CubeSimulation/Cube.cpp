@@ -51,6 +51,24 @@ Cube::Cube(int UP, int FRONT, int LEFT, int BACK, int RIGHT, int DOWN)
 
 	
 }
+void Cube::reset_cube(int UP, int FRONT, int LEFT, int BACK, int RIGHT, int DOWN)
+{
+	WHITE_ = CubeFace::CubeFace(UP);
+	GREEN_ = CubeFace::CubeFace(FRONT);
+	RED_ = CubeFace::CubeFace(RIGHT);
+	BLUE_ = CubeFace::CubeFace(BACK);
+	ORANGE_ = CubeFace::CubeFace(LEFT);
+	YELLOW_ = CubeFace::CubeFace(DOWN);
+
+	ptr_UP_ = &WHITE_;
+	ptr_FRONT_ = &GREEN_;
+	ptr_RIGHT_ = &RED_;
+	ptr_BACK_ = &BLUE_;
+	ptr_LEFT_ = &ORANGE_;
+	ptr_DOWN_ = &YELLOW_;
+
+	import_all_faces_to_facemap(ptr_UP_, ptr_LEFT_, ptr_FRONT_, ptr_RIGHT_, ptr_BACK_, ptr_DOWN_);
+}
 
 void Cube::import_all_faces_to_facemap(CubeFace * ptr_UP_, CubeFace * ptr_LEFT_, CubeFace * ptr_FRONT_, CubeFace * ptr_RIGHT_, CubeFace * ptr_BACK_, CubeFace * ptr_DOWN_)
 {

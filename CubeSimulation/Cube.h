@@ -6,6 +6,7 @@ class Cube
 {
 public:
 	Cube(int UP, int FRONT, int RIGHT, int BACK, int LEFT, int DOWN);
+	void reset_cube(int UP, int FRONT, int LEFT, int BACK, int RIGHT, int DOWN);
 
 	void import_all_faces_to_facemap(CubeFace * ptr_UP_, CubeFace * ptr_LEFT_, CubeFace * ptr_FRONT_, CubeFace * ptr_RIGHT_, CubeFace * ptr_BACK_, CubeFace * ptr_DOWN_);
 
