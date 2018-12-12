@@ -10,7 +10,7 @@ CubeTriplet::CubeTriplet()
 	}
 }
 
-CubeTriplet::CubeTriplet(int COLOR)
+CubeTriplet::CubeTriplet(std::string COLOR)
 {
 	for (int i = 0; i < 3; i++)
 	{

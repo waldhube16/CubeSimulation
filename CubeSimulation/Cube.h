@@ -2,24 +2,17 @@
 #include "CubeFace.h"
 #include "CubeSlice.h"
 #include <iostream>
+#include <string>
 class Cube
 {
 public:
-	Cube(int UP, int FRONT, int RIGHT, int BACK, int LEFT, int DOWN);
-	void reset_cube(int UP, int FRONT, int LEFT, int BACK, int RIGHT, int DOWN);
+	Cube(std::string UP, std::string FRONT, std::string RIGHT, std::string BACK, std::string LEFT, std::string DOWN);
+	void reset_cube(std::string UP, std::string FRONT, std::string LEFT, std::string BACK, std::string RIGHT, std::string DOWN);
 
 	void import_all_faces_to_facemap(CubeFace * ptr_UP_, CubeFace * ptr_LEFT_, CubeFace * ptr_FRONT_, CubeFace * ptr_RIGHT_, CubeFace * ptr_BACK_, CubeFace * ptr_DOWN_);
-
-
-
-
-
-
-	void print_cube();
 	
-
-
-
+	void print_cube();
+	std::string generate_cubestring(); 
 	void R();
 	void R_prime();
 	void F();
@@ -66,7 +59,7 @@ public:
 	CubeFace* ptr_DOWN_;
 	
 
-	int face_Map_[9][12];
-	int temp_arr_[12];
+	std::string face_Map_[9][12];
+	std::string temp_arr_[12];
 };
 

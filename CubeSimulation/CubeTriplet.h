@@ -1,13 +1,14 @@
 #pragma once
+#include <string>
 
 class CubeTriplet
 {
 public:
 	CubeTriplet();
-	CubeTriplet(int COLOR);
+	CubeTriplet(std::string COLOR);
 	~CubeTriplet();
 
 private:
-	int trip_arr_[3];
+	std::string trip_arr_[3];
 };
 

@@ -23,7 +23,7 @@
     <ProjectGuid>{51BCCF3D-0D08-4D68-B681-5DB6C57BEC95}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>CubeSimulation</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

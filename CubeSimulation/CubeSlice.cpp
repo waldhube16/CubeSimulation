@@ -2,7 +2,7 @@
 #include "CubeSlice.h"
 
 
-CubeSlice::CubeSlice(int COLOR, int COLOR_T1, int COLOR_T2, int COLOR_T3, int COLOR_T4)
+CubeSlice::CubeSlice(std::string COLOR, std::string COLOR_T1, std::string COLOR_T2, std::string COLOR_T3, std::string COLOR_T4)
 {
 	SliceFace_ = CubeFace(COLOR);
 	T1_ = CubeTriplet(COLOR_T1);

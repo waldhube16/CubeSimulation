@@ -3,7 +3,7 @@
 #include "CubeFace.h"
 
 
-CubeFace::CubeFace(int COLOR)
+CubeFace::CubeFace(std::string COLOR)
 {
 	for (int j = 0; j < 3; j++)
 	{
@@ -106,13 +106,13 @@ void CubeFace::prime_Face()
 
 void CubeFace::print_Face()
 {
-	std::cout	<< (char) face_[0][0] << "   " << (char) face_[0][1] << "   " << (char) face_[0][2] << "\n"
-				<< (char) face_[1][0] << "   " << (char) face_[1][1] << "   " << (char) face_[1][2] << "\n"
-				<< (char) face_[2][0] << "   " << (char) face_[2][1] << "   " << (char) face_[2][2] << "\n" << std::endl;
+	std::cout	<<  face_[0][0] << "   " <<  face_[0][1] << "   " <<  face_[0][2] << "\n"
+				<<  face_[1][0] << "   " <<  face_[1][1] << "   " <<  face_[1][2] << "\n"
+				<<  face_[2][0] << "   " <<  face_[2][1] << "   " <<  face_[2][2] << "\n" << std::endl;
 
 }
 
-int CubeFace::get_Faceval(int i, int j)
+std::string CubeFace::get_Faceval(int i, int j)
 {
 	return face_[i][j];
 
@@ -120,7 +120,7 @@ int CubeFace::get_Faceval(int i, int j)
 
 }
 
-void CubeFace::set_Faceval(int i, int j, int value)
+void CubeFace::set_Faceval(int i, int j, std::string value)
 {
 	face_[i][j] = value;
 }
