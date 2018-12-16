@@ -33,10 +33,34 @@
     <ClInclude Include="CubeSlice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AlgorithmEmbeddedPython\AlgorithmEmbedded.h">
+    <ClInclude Include="AlgorithmEmbeddedC\color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AlgorithmEmbeddedPython\pch.h">
+    <ClInclude Include="AlgorithmEmbeddedC\coordcube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgorithmEmbeddedC\corner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgorithmEmbeddedC\cubiecube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgorithmEmbeddedC\edge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgorithmEmbeddedC\facecube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgorithmEmbeddedC\facelet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgorithmEmbeddedC\prunetable_helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgorithmEmbeddedC\search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgorithmEmbeddedC\solve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,10 +83,22 @@
     <ClCompile Include="CubeSlice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AlgorithmEmbeddedPython\AlgorithmEmbedded.cpp">
+    <ClCompile Include="AlgorithmEmbeddedC\coordcube.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AlgorithmEmbeddedPython\pch.cpp">
+    <ClCompile Include="AlgorithmEmbeddedC\cubiecube.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgorithmEmbeddedC\facecube.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgorithmEmbeddedC\prunetable_helpers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgorithmEmbeddedC\search.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AlgorithmEmbeddedC\solve.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -140,6 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,8 +150,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AlgorithmEmbeddedPython\AlgorithmEmbedded.h" />
-    <ClInclude Include="AlgorithmEmbeddedPython\pch.h" />
+    <ClInclude Include="AlgorithmEmbeddedC\color.h" />
+    <ClInclude Include="AlgorithmEmbeddedC\coordcube.h" />
+    <ClInclude Include="AlgorithmEmbeddedC\corner.h" />
+    <ClInclude Include="AlgorithmEmbeddedC\cubiecube.h" />
+    <ClInclude Include="AlgorithmEmbeddedC\edge.h" />
+    <ClInclude Include="AlgorithmEmbeddedC\facecube.h" />
+    <ClInclude Include="AlgorithmEmbeddedC\facelet.h" />
+    <ClInclude Include="AlgorithmEmbeddedC\prunetable_helpers.h" />
+    <ClInclude Include="AlgorithmEmbeddedC\search.h" />
+    <ClInclude Include="AlgorithmEmbeddedC\solve.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeFace.h" />
     <ClInclude Include="CubeSlice.h" />
@@ -159,8 +168,12 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AlgorithmEmbeddedPython\AlgorithmEmbedded.cpp" />
-    <ClCompile Include="AlgorithmEmbeddedPython\pch.cpp" />
+    <ClCompile Include="AlgorithmEmbeddedC\coordcube.c" />
+    <ClCompile Include="AlgorithmEmbeddedC\cubiecube.c" />
+    <ClCompile Include="AlgorithmEmbeddedC\facecube.c" />
+    <ClCompile Include="AlgorithmEmbeddedC\prunetable_helpers.c" />
+    <ClCompile Include="AlgorithmEmbeddedC\search.c" />
+    <ClCompile Include="AlgorithmEmbeddedC\solve.c" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeFace.cpp" />
     <ClCompile Include="CubeSimulation.cpp" />
